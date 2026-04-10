@@ -1,0 +1,20 @@
+{# cadastro\templates\cadastro\index.html #}
+
+{# `index.html` herda a estrutura de `base.html` #}
+{% extends 'cadastro/base.html' %}
+
+{% block conteudo %}
+
+    <h2>{{ total }} Pessoas Cadastradas</h2>
+    
+    <ul>
+    {% for pessoa in pessoas %}
+        <li>{{ pessoa.nome }} - {{ pessoa.email }}</li>
+
+    {% empty %}
+        <li>Ninguém está cadastrado.</li>
+        
+    {% endfor%}
+    </ul>
+
+{% endblock %}

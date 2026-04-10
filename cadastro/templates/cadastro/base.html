@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ sitename }}{% block titulo %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>{{ sitename }}</h1>
+    </header>
+
+    <hr>
+
+    <nav>
+    <a href="{% url 'index' %}">Início</a> |
+    <a href="{% url 'contato' %}">Contato</a> |
+    <a href="{% url 'adicionar' %}">Adicionar</a>
+</nav>
+
+    <hr>
+
+    <main>
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <hr>
+    <footer>
+        <p>&copy; 2026 {{ dono }}</p>
+    </footer>
+
+</body>
+
+</html>
