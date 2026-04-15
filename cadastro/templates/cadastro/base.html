@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <title>{{ sitename }}{% block titulo %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'cadastro/style.css' %}">
 </head>
 
 <body>
@@ -14,10 +16,19 @@
 
     <hr>
 
-    <nav>
+<nav>
     <a href="{% url 'index' %}">Início</a> |
     <a href="{% url 'contato' %}">Contato</a> |
-    <a href="{% url 'adicionar' %}">Adicionar</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'adicionar' %}">Adicionar</a> |
+        Olá, {{ user.username }}! |
+        <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Entrar</a>
+    {% endif %}
 </nav>
 
     <hr>

@@ -121,3 +121,6 @@ STATIC_URL = 'static/'
 
 APP_NAME = 'Cadastro de pessoas'
 APP_OWNER = 'Emerson Ilan'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'

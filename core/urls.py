@@ -8,4 +8,5 @@ urlpatterns = [
 
     # Lista as rotas do app "cadastro"
     path('', include('cadastro.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
