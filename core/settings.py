@@ -1,3 +1,5 @@
+# core\settings.py
+
 """
 Django settings for core project.
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!(@aobfpzj)&#!&t@m49guc1d&4$_$9dm^^=7(0puwu5^$g=4e'
+SECRET_KEY = 'django-insecure-(=z4%mt=rc)0r_lsl*2@1wr8k9zb7^)ya2fdh%n7$2uxsx=%+q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cadastro',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                 'cadastro.context_processors.global_context',
+                'cadastro.context_processors.global_context',
             ],
         },
     },
@@ -118,9 +121,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Variáveis do Aplicativo
+APP_NAME = 'Cadastro de Gente'
+APP_OWNER = 'Emerson Silva'
 
-APP_NAME = 'Cadastro de pessoas'
-APP_OWNER = 'Emerson Ilan'
-
+# URLs para retorno após login e logout
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
