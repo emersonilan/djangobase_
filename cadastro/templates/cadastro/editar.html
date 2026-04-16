@@ -15,6 +15,32 @@
             {{ field }}
         </p>
         {% endfor %}
+
+        <!-- 🔽 ADICIONADO (telefones) -->
+        <h3>Telefones</h3>
+
+        {{ formset.management_form }}
+
+        {% for f in formset %}
+            <p class="mb-3">
+                {{ f.id }} <!-- 👈 ADICIONADO (ESSENCIAL) -->
+                {{ f.numero.label_tag }}
+                {{ f.numero }}
+                {{ f.DELETE }} Remover
+            </p>
+        {% endfor %}
+        <!-- 🔼 FIM -->
+
+        <!-- 🔽 ADICIONADO (mostrar erros) -->
+        {% if form.errors %}
+    {{ form.errors }}
+{% endif %}
+
+{% if formset.errors %}
+    {{ formset.errors }}
+{% endif %}
+        <!-- 🔼 FIM -->
+
         <button type="submit">Salvar</button>
         <a href="{% url 'detalhe' pessoa.id %}">Cancelar</a>
     </form>

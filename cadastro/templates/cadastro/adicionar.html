@@ -11,12 +11,28 @@
 
 <form method="POST">
     {% csrf_token %}
+
     {% for field in form %}
     <p class="mb-3">
         {{ field.label_tag }}
         {{ field }}
     </p>
     {% endfor %}
+
+    <!-- 🔽 ADICIONADO (telefones) -->
+    <h3>Telefones</h3>
+
+    {{ formset.management_form }}
+
+    {% for f in formset %}
+        <p class="mb-3">
+            {{ f.numero.label_tag }}
+            {{ f.numero }}
+            {{ f.DELETE }} Remover
+        </p>
+    {% endfor %}
+    <!-- 🔼 FIM -->
+
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
 {% endblock %}
