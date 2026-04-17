@@ -5,6 +5,8 @@ from cadastro.forms import PessoaForm, TelefoneFormSet
 from cadastro.models import Pessoa
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .forms import ContatoForm
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -19,7 +21,39 @@ def index(request):
 
 
 def contato(request):
-    return render(request, 'cadastro/contato.html')
+    if request.method == 'POST':
+        form = ContatoForm(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            assunto = form.cleaned_data['assunto']
+            mensagem = form.cleaned_data['mensagem']
+
+            mensagem_completa = f"""
+            Assunto: {assunto}
+
+            Nome: {nome}
+            Email: {email}
+
+            Mensagem:
+            {mensagem}
+            """
+
+            send_mail(
+                assunto,
+                mensagem_completa,
+                email,  # quem enviou
+                ['seuemail@gmail.com'],  # 👈 TROCA PELO SEU EMAIL
+            )
+
+            return render(request, 'cadastro/contato.html', {
+                'form': ContatoForm(),
+                'sucesso': True
+            })
+    else:
+        form = ContatoForm()
+
+    return render(request, 'cadastro/contato.html', {'form': form})
 
 
 @login_required
@@ -81,5 +115,5 @@ def deletar(request, id):
     if request.method == 'POST':
         pessoa.delete()
         messages.success(request, 'Pessoa apagada com sucesso!')
-        return redirect('index')        
+        return redirect('index')
     return render(request, 'cadastro/deletar.html', {'pessoa': pessoa})

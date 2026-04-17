@@ -23,3 +23,9 @@ TelefoneFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
+
+class ContatoForm(forms.Form):
+    nome = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    assunto = forms.CharField(max_length=150)
+    mensagem = forms.CharField(widget=forms.Textarea)

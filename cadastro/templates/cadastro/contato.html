@@ -8,9 +8,36 @@
 
 <h2>Faça Contato</h2>
 <p>Preencha todos os campos para falar conosco.</p>
-<form>
+<form method="POST">
+    {% csrf_token %}
 
-    Campos do form entram aqui
+    <p>
+        Nome:<br>
+        {{ form.nome }}
+    </p>
+
+    <p>
+        Email:<br>
+        {{ form.email }}
+    </p>
+
+    <!-- 🔽 ADICIONADO -->
+    <p>
+        Assunto:<br>
+        {{ form.assunto }}
+    </p>
+    <!-- 🔼 -->
+
+    <p>
+        Mensagem:<br>
+        {{ form.mensagem }}
+    </p>
+
+    {% if sucesso %}
+        <p style="color: green;">Mensagem enviada com sucesso!</p>
+    {% endif %}
+
+    <button type="submit">Enviar</button>
 
 </form>
 

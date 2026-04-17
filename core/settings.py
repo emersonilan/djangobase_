@@ -128,3 +128,6 @@ APP_OWNER = 'Emerson Silva'
 # URLs para retorno após login e logout
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+# Configuração de email para desenvolvimento (imprime emails no console)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
